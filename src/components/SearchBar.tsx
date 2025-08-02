@@ -66,7 +66,7 @@ export default function SearchBar({ onSearch, placeholder = "Search emojis..." }
       
       {query && (
         <div className={styles.searchIndicator}>
-          <span>Searching for "{query}"</span>
+          <span>Searching for &ldquo;{query}&rdquo;</span>
         </div>
       )}
     </div>
