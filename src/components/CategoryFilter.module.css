@@ -51,17 +51,17 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.7); /* 更深的背景色提高可读性 */
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 16px;
   margin-top: 8px;
   overflow: hidden;
   z-index: 100;
   animation: slideInDown 0.3s ease-out;
   box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.1);
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .dropdownItem {
@@ -69,13 +69,13 @@
   background: none;
   border: none;
   padding: 16px 20px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9); /* 提高文字对比度 */
   font-size: 0.95rem;
   font-weight: 500;
   text-align: left;
   cursor: pointer;
   transition: all 0.2s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .dropdownItem:last-child {
@@ -83,14 +83,15 @@
 }
 
 .dropdownItem:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   color: rgba(255, 255, 255, 1);
 }
 
 .dropdownItem.active {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   color: rgba(255, 255, 255, 1);
   font-weight: 600;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
 }
 
 /* Desktop tabs styles */

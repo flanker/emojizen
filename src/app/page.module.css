@@ -207,9 +207,12 @@
     margin-bottom: 32px;
   }
   
+  .headerContent {
+    padding: 0 16px;
+  }
+  
   .hero {
     margin-bottom: 32px;
-    padding: 0 16px;
   }
   
   .title {
