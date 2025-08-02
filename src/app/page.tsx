@@ -43,26 +43,31 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <div className={styles.header}>
-          <div className={styles.hero}>
-            <h1 className={styles.title}>
-              <span className={styles.titleEmoji}>🎨</span>
-              Emojizen
-            </h1>
-            <p className={styles.subtitle}>
-              Discover, search, and copy beautiful emojis with just a click
-            </p>
+          <div className={styles.headerContent}>
+            <div className={styles.hero}>
+              <h1 className={styles.title}>
+                <span className={styles.titleEmoji}>🎨</span>
+              </h1>
+              <p className={styles.subtitle}>
+                Discover, search, and copy beautiful emojis with just a click
+              </p>
+            </div>
+            
+            <div className={styles.searchSection}>
+              <SearchBar 
+                onSearch={handleSearch}
+                placeholder="Search emojis by name or keyword..."
+              />
+            </div>
+            
+            <div className={styles.filterSection}>
+              <CategoryFilter
+                categories={categories}
+                activeCategory={activeCategory}
+                onCategoryChange={handleCategoryChange}
+              />
+            </div>
           </div>
-          
-          <SearchBar 
-            onSearch={handleSearch}
-            placeholder="Search emojis by name or keyword..."
-          />
-          
-          <CategoryFilter
-            categories={categories}
-            activeCategory={activeCategory}
-            onCategoryChange={handleCategoryChange}
-          />
         </div>
 
         <div className={styles.content}>

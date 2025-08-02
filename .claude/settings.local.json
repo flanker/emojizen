@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(pnpm dev:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": []
   }

@@ -43,8 +43,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 12px;
   width: 100%;
 }
 
@@ -111,8 +111,8 @@
 /* Responsive breakpoints */
 @media (min-width: 480px) {
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 14px;
   }
 }
 
@@ -122,8 +122,8 @@
   }
   
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
   }
   
   .categorySection {
@@ -142,8 +142,8 @@
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 18px;
   }
   
   .categorySection {

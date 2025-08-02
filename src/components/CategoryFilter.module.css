@@ -99,25 +99,34 @@
 
 .tabs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-wrap: nowrap;
+  gap: 4px;
   justify-content: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0 4px;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 12px 20px;
+  border-radius: 8px;
+  padding: 8px 12px;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .tab::before {
@@ -189,12 +198,12 @@
 
 @media (min-width: 1024px) {
   .tabs {
-    gap: 12px;
+    gap: 6px;
   }
   
   .tab {
-    padding: 14px 24px;
-    font-size: 1rem;
+    padding: 10px 16px;
+    font-size: 0.85rem;
   }
 }
 
