@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 Emojizen
 
-## Getting Started
+A beautiful, modern emoji picker website built with Next.js. Discover, search, and copy emojis with just a click.
 
-First, run the development server:
+## ✨ Features
+
+- 🔍 **Real-time search** - Find emojis by name or keywords
+- 🏷️ **Category filtering** - Browse emojis by categories
+- 📋 **One-click copy** - Click any emoji to copy to clipboard
+- 📱 **Responsive design** - Works perfectly on all devices
+- 🎭 **Beautiful UI** - Modern glassmorphism design with smooth animations
+
+## 🚀 Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clone the repository
+git clone https://github.com/yourusername/emojizen.git
+cd emojizen
+
+# Install dependencies
+pnpm install
+
+# Start development server
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the website.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: CSS Modules with modern CSS features
+- **Package Manager**: pnpm
+- **Deployment**: GitHub Pages with GitHub Actions
 
-## Learn More
+## 📦 Build & Deploy
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Build for production
+pnpm build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# The site auto-deploys to GitHub Pages on push to master
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT License - feel free to use this project for your own emoji needs!
