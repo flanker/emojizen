@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  margin-bottom: 32px;
+  margin-bottom: 36px; /* 增加底部边距以适应换行布局 */
   padding-top: 4px;
 }
 
@@ -30,6 +30,15 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+.dropdownButton span {
+  /* 文字容器，允许截断但为箭头预留空间 */
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-right: 8px;
+}
+
 .dropdownButton:hover {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
@@ -39,6 +48,7 @@
 .chevron {
   color: rgba(255, 255, 255, 0.6);
   transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0; /* 防止箭头被压缩 */
 }
 
 .chevron.expanded {
@@ -101,14 +111,11 @@
 
 .tabs {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 4px;
+  flex-wrap: wrap; /* 允许换行 */
+  gap: 6px;
   justify-content: center;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding: 4px 4px;
-  overflow-y: visible;
+  padding: 8px 4px;
+  /* 移除横向滚动，允许自然换行 */
 }
 
 .tabs::-webkit-scrollbar {
@@ -129,7 +136,9 @@
   white-space: nowrap;
   position: relative;
   overflow: hidden;  
+  /* 换行布局优化 */
   flex-shrink: 0;
+  margin-bottom: 4px; /* 行间距 */
   /* 使用text-shadow和opacity来区分不同状态，而不是font-weight */
   opacity: 0.8;
   text-shadow: none;
@@ -184,6 +193,15 @@
   opacity: 1;
 }
 
+/* 分类名称响应式显示 */
+.tabShort {
+  display: none; /* 默认隐藏简化名称 */
+}
+
+.tabFull {
+  display: inline; /* 默认显示完整名称 */
+}
+
 @keyframes slideInDown {
   from {
     opacity: 0;
@@ -206,14 +224,59 @@
   }
 }
 
+/* 中等屏幕优化 - 使用简化名称 */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .tabs {
+    gap: 5px;
+  }
+  
+  .tab {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+  
+  /* 在中等屏幕显示简化名称 */
+  .tabShort {
+    display: inline;
+  }
+  
+  .tabFull {
+    display: none;
+  }
+}
+
 @media (min-width: 1024px) {
   .tabs {
-    gap: 6px;
+    gap: 8px;
   }
   
   .tab {
     padding: 10px 16px;
     font-size: 0.85rem;
+  }
+}
+
+/* 大屏幕时尝试单行显示完整名称 */
+@media (min-width: 1400px) {
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: flex-start;
+  }
+  
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* 大屏幕恢复完整名称 */
+  .tabShort {
+    display: none;
+  }
+  
+  .tabFull {
+    display: inline;
   }
 }
 
@@ -224,11 +287,27 @@
   
   .dropdownButton {
     padding: 14px 16px;
-    font-size: 0.95rem;
+    font-size: 0.9rem; /* 小屏幕使用更小字体 */
   }
   
   .dropdownItem {
     padding: 14px 16px;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* 小屏幕使用更小字体 */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 360px) {
+  .dropdownButton {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+  
+  .dropdownItem {
+    padding: 12px 14px;
+    font-size: 0.8rem;
   }
 }

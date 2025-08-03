@@ -17,6 +17,23 @@ interface CategoryFilterProps {
 export default function CategoryFilter({ categories, activeCategory, onCategoryChange }: CategoryFilterProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  // 简化的分类名称映射（用于小屏幕显示）
+  const getShortName = (name: string): string => {
+    const shortNames: Record<string, string> = {
+      'Smileys & Emotion': 'Smileys',
+      'People & Body': 'People',
+      'Animals & Nature': 'Animals',
+      'Food & Drink': 'Food',
+      'Travel & Places': 'Travel',
+      'Activities': 'Activities',
+      'Objects': 'Objects',
+      'Symbols': 'Symbols',
+      'Flags': 'Flags',
+      'Component': 'Component'
+    };
+    return shortNames[name] || name;
+  };
+
   const handleCategoryClick = (categoryId: string | null) => {
     onCategoryChange(categoryId);
     setIsExpanded(false);
@@ -88,8 +105,10 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
               key={category.id}
               className={`${styles.tab} ${activeCategory === category.id ? styles.active : ''}`}
               onClick={() => handleCategoryClick(category.id)}
+              title={category.name} /* 完整名称作为tooltip */
             >
-              {category.name}
+              <span className={styles.tabShort}>{getShortName(category.name)}</span>
+              <span className={styles.tabFull}>{category.name}</span>
             </button>
           ))}
         </div>
