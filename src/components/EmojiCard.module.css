@@ -2,8 +2,8 @@
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 12px;
+  border-radius: 10px; /* 稍微减小圆角 */
+  padding: 8px; /* 减少内边距 */
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: 80px;
+  min-height: 60px; /* 减小最小高度 */
 }
 
 .card:hover {
@@ -38,11 +38,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px; /* 减少间距 */
 }
 
 .emoji {
-  font-size: 1.8rem;
+  font-size: 1.5rem; /* 减小emoji尺寸 */
   line-height: 1;
   user-select: none;
   transition: transform 0.2s ease;
@@ -157,12 +157,12 @@
 
 @media (max-width: 768px) {
   .card {
-    padding: 12px;
-    min-height: 100px;
+    padding: 8px; /* 减少移动端内边距 */
+    min-height: 70px; /* 减小移动端最小高度 */
   }
   
   .emoji {
-    font-size: 2rem;
+    font-size: 1.6rem; /* 适当减小移动端emoji尺寸 */
   }
   
   .info {
@@ -173,5 +173,21 @@
   .name {
     font-size: 0.65rem;
     line-height: 1.2;
+  }
+}
+
+/* 小屏幕进一步优化 */
+@media (max-width: 480px) {
+  .card {
+    padding: 6px;
+    min-height: 55px;
+  }
+  
+  .emoji {
+    font-size: 1.4rem;
+  }
+  
+  .emojiContainer {
+    margin-bottom: 2px;
   }
 }

@@ -43,8 +43,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); /* 减小最小宽度以显示更多emoji */
+  gap: 10px; /* 稍微减小间距 */
   width: 100%;
 }
 
@@ -111,8 +111,8 @@
 /* Responsive breakpoints */
 @media (min-width: 480px) {
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); /* 减小以显示更多 */
+    gap: 12px;
   }
 }
 
@@ -122,8 +122,8 @@
   }
   
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* 减小以显示更多 */
+    gap: 14px;
   }
   
   .categorySection {
@@ -142,8 +142,8 @@
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); /* 减小以显示更多 */
+    gap: 16px;
   }
   
   .categorySection {
@@ -167,8 +167,8 @@
   }
   
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); /* 减小以显示更多 */
+    gap: 10px;
   }
   
   .categorySection {
