@@ -103,9 +103,9 @@
 .tabs {
   display: flex;
   flex-wrap: wrap; /* 允许换行 */
-  gap: 6px;
+  gap: 4px;
   justify-content: center;
-  padding: 8px 4px;
+  padding: 8px 4px 12px 4px; /* 增加底部padding确保最后一行可见 */
   /* 移除横向滚动，允许自然换行 */
 }
 
@@ -114,30 +114,30 @@
 }
 
 .tab {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 6px 8px;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 400;
   cursor: pointer;
   transition: all 0.15s ease;
   white-space: nowrap;
   flex-shrink: 0;
   margin-bottom: 4px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
 }
 
 .tab:hover {
-  background: var(--border);
-  border-color: var(--accent);
   color: var(--foreground);
+  border-bottom-color: var(--muted);
 }
 
 .tab.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
+  color: var(--accent);
+  border-bottom-color: var(--accent);
   font-weight: 500;
 }
 
@@ -175,12 +175,14 @@
 /* 中等屏幕优化 - 使用简化名称 */
 @media (min-width: 768px) and (max-width: 1200px) {
   .tabs {
-    gap: 5px;
+    gap: 3px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .tab {
-    padding: 8px 10px;
-    font-size: 0.75rem;
+    padding: 5px 6px;
+    font-size: 0.8rem;
   }
   
   /* 在中等屏幕显示简化名称 */
@@ -195,27 +197,23 @@
 
 @media (min-width: 1024px) {
   .tabs {
-    gap: 8px;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .tab {
-    padding: 10px 16px;
+    padding: 6px 10px;
     font-size: 0.85rem;
   }
 }
 
-/* 大屏幕时尝试单行显示完整名称 */
+/* 大屏幕时恢复完整名称，但保持换行 */
 @media (min-width: 1400px) {
   .tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    justify-content: flex-start;
-  }
-  
-  .tabs::-webkit-scrollbar {
-    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
   }
   
   /* 大屏幕恢复完整名称 */
@@ -225,6 +223,20 @@
   
   .tabFull {
     display: inline;
+  }
+  
+  .tab {
+    padding: 8px 4px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 超大屏幕尝试单行显示 */
+@media (min-width: 1600px) {
+  .tabs {
+    flex-wrap: nowrap;
+    gap: 16px;
+    overflow-x: hidden;
   }
 }
 
