@@ -4,41 +4,36 @@
   right: 24px;
   z-index: 1000;
   pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .notification.show {
   opacity: 1;
-  transform: translateX(0) scale(1);
+  transform: translateX(0);
 }
 
 .notification.hide {
   opacity: 0;
-  transform: translateX(100%) scale(0.95);
+  transform: translateX(100%);
 }
 
 .content {
-  background: rgba(34, 197, 94, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  border-radius: 16px;
-  padding: 16px 20px;
+  background: #22c55e;
+  border: 1px solid #16a34a;
+  border-radius: 8px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  min-width: 280px;
-  animation: slideInBounce 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 10px;
+  box-shadow: var(--shadow-md);
+  min-width: 240px;
+  animation: slideIn 0.3s ease;
 }
 
 .emoji {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   line-height: 1;
   flex-shrink: 0;
-  animation: emojiPop 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
 }
 
 .message {
@@ -50,14 +45,14 @@
 
 .text {
   color: white;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 500;
   line-height: 1.2;
 }
 
 .subtext {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.75rem;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -65,70 +60,21 @@
 .checkmark {
   color: white;
   flex-shrink: 0;
-  animation: checkmarkDraw 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
 }
 
 .checkmark svg {
   display: block;
 }
 
-@keyframes slideInBounce {
+@keyframes slideIn {
   0% {
     opacity: 0;
-    transform: translateX(100%) scale(0.9);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(-10px) scale(1.02);
+    transform: translateX(100%);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: translateX(0);
   }
-}
-
-@keyframes emojiPop {
-  0% {
-    transform: scale(0.8) rotate(-10deg);
-  }
-  50% {
-    transform: scale(1.1) rotate(5deg);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-@keyframes checkmarkDraw {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.content::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  border-radius: 16px;
-  pointer-events: none;
 }
 
 /* Mobile responsive */
@@ -137,25 +83,24 @@
     top: 20px;
     right: 20px;
     left: 20px;
-    right: 20px;
   }
   
   .content {
     min-width: auto;
-    padding: 14px 18px;
-    gap: 10px;
+    padding: 10px 12px;
+    gap: 8px;
   }
   
   .emoji {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   
   .text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .subtext {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
 }
 
@@ -167,10 +112,6 @@
   }
   
   .content {
-    padding: 12px 16px;
-  }
-  
-  .text {
-    font-size: 0.85rem;
+    padding: 10px 12px;
   }
 }

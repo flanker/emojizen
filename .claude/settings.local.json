@@ -5,7 +5,16 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(pnpm run:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl:*)",
+      "Bash(jq:*)",
+      "Bash(node:*)",
+      "Bash(cp:*)",
+      "Bash(rm:*)",
+      "Bash(rg:*)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

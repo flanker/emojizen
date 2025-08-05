@@ -12,22 +12,19 @@
 
 .dropdownButton {
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 16px 20px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
-  font-weight: 500;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.15s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .dropdownButton span {
@@ -40,20 +37,19 @@
 }
 
 .dropdownButton:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
 }
 
 .chevron {
-  color: rgba(255, 255, 255, 0.6);
-  transition: transform 0.3s ease, color 0.3s ease;
-  flex-shrink: 0; /* 防止箭头被压缩 */
+  color: var(--muted);
+  transition: transform 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
 }
 
 .chevron.expanded {
   transform: rotate(180deg);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--accent);
 }
 
 .dropdown {
@@ -61,31 +57,28 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.7); /* 更深的背景色提高可读性 */
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
-  margin-top: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 4px;
   overflow: hidden;
   z-index: 100;
-  animation: slideInDown 0.3s ease-out;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 8px 16px rgba(0, 0, 0, 0.2);
+  animation: slideInDown 0.2s ease-out;
+  box-shadow: var(--shadow-md);
 }
 
 .dropdownItem {
   width: 100%;
   background: none;
   border: none;
-  padding: 16px 20px;
-  color: rgba(255, 255, 255, 0.9); /* 提高文字对比度 */
-  font-size: 0.95rem;
-  font-weight: 500;
+  padding: 12px 16px;
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 400;
   text-align: left;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.15s ease;
+  border-bottom: 1px solid var(--border);
 }
 
 .dropdownItem:last-child {
@@ -93,15 +86,13 @@
 }
 
 .dropdownItem:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 1);
+  background: var(--border);
 }
 
 .dropdownItem.active {
-  background: rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 1);
-  font-weight: 600;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent);
+  font-weight: 500;
 }
 
 /* Desktop tabs styles */
@@ -123,74 +114,31 @@
 }
 
 .tab {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
   padding: 8px 12px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--muted);
   font-size: 0.8rem;
-  font-weight: 600; /* 统一使用600，避免切换时的宽度变化 */
+  font-weight: 400;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.15s ease;
   white-space: nowrap;
-  position: relative;
-  overflow: hidden;  
-  /* 换行布局优化 */
   flex-shrink: 0;
-  margin-bottom: 4px; /* 行间距 */
-  /* 使用text-shadow和opacity来区分不同状态，而不是font-weight */
-  opacity: 0.8;
-  text-shadow: none;
-}
-
-.tab::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  margin-bottom: 4px;
 }
 
 .tab:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 1);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  z-index: 10;
-}
-
-.tab:hover::before {
-  opacity: 1;
+  background: var(--border);
+  border-color: var(--accent);
+  color: var(--foreground);
 }
 
 .tab.active {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: rgba(255, 255, 255, 1);
-  /* 移除font-weight变化，保持600避免宽度变化 */
-  opacity: 1;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-  box-shadow: 
-    0 8px 25px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  z-index: 5;
-}
-
-.tab.active::before {
-  opacity: 1;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  font-weight: 500;
 }
 
 /* 分类名称响应式显示 */
