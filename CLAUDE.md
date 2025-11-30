@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Emojizen is a modern emoji picker website built with Next.js 15. It features real-time search, category filtering, one-click copying, and a glassmorphism UI design. The application displays 1,910+ emojis across multiple categories with comprehensive search capabilities.
+Emojizen is a modern emoji picker website built with Next.js 16. It features real-time search, category filtering, one-click copying, and a glassmorphism UI design. The application displays 1,910+ emojis across multiple categories with comprehensive search capabilities.
 
-- **Framework**: Next.js 15.4.5 with App Router (static export mode)
-- **Runtime**: React 19.1.0 
+- **Framework**: Next.js 16.0.5 with App Router (static export mode)
+- **Runtime**: React 19.2.0
 - **Language**: TypeScript with strict mode enabled
 - **Package Manager**: pnpm
 - **Styling**: CSS Modules with modern CSS features
@@ -35,8 +35,25 @@ pnpm deploy       # Build + create .nojekyll file
 
 The app follows a client-side architecture with React state management:
 
+### Directory Structure
+```
+src/
+├── app/              # Next.js 16 App Router pages
+│   ├── page.tsx      # Main home page with state management
+│   ├── layout.tsx    # Root layout with fonts and metadata
+│   └── globals.css   # Global styles
+├── components/       # React components (all client-side)
+│   ├── EmojiGrid     # Emoji filtering and rendering
+│   ├── EmojiCard     # Individual emoji with copy functionality
+│   ├── SearchBar     # Search input
+│   ├── CategoryFilter # Category selection UI
+│   └── CopyNotification # Toast notification
+└── data/
+    └── emojis.json   # Emoji database (1,910+ emojis)
+```
+
 ### Core Components Structure
-- **`page.tsx`**: Main app container with search/filter state management
+- **`app/page.tsx`**: Main app container with search/filter state management
 - **`EmojiGrid`**: Handles emoji filtering, grouping, and rendering logic
 - **`EmojiCard`**: Individual emoji display with click-to-copy functionality
 - **`SearchBar`**: Real-time search input with debouncing
@@ -44,10 +61,11 @@ The app follows a client-side architecture with React state management:
 - **`CopyNotification`**: Toast notification for copy feedback
 
 ### Data Architecture
-- **`emojis.json`**: Single source of truth containing categories and emoji data
+- **`src/data/emojis.json`**: Single source of truth containing categories and emoji data
 - Each emoji has: `emoji`, `name`, `keywords[]` properties
-- Categories structure: `{id, name, emojis[]}` 
+- Categories structure: `{id, name, emojis[]}`
 - State flows: search query → filter logic → display grid
+- TypeScript path alias: `@/*` maps to `./src/*` for cleaner imports
 
 ### Key Features Implementation
 - **Search**: Filters by emoji name and keywords (case-insensitive)
@@ -71,3 +89,16 @@ The app uses Next.js static export mode for GitHub Pages deployment:
 - TypeScript interfaces define emoji and category data structures
 - Search and filtering logic uses React useMemo for performance
 - Copy functionality includes visual feedback via notification system
+- Fonts: Geist Sans and Geist Mono from next/font/google
+- Analytics: Google Analytics integrated in layout.tsx (tracking ID: G-SB94WLJMY0)
+
+## GitHub Actions Deployment
+
+The project uses automated deployment via GitHub Actions:
+
+- **Trigger**: Automatic on push to master branch (also manual via workflow_dispatch)
+- **Node.js version**: 22
+- **pnpm version**: 10
+- **Caching**: .next/cache is cached based on pnpm-lock.yaml and source files
+- **Build output**: Uploaded from ./out directory
+- **Pages config**: Uses actions/configure-pages for base path configuration
