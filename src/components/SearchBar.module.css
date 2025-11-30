@@ -78,6 +78,19 @@
   transform: scale(0.95);
 }
 
+.searchIndicator {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: rgba(99, 102, 241, 0.05);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.searchIndicator span {
+  font-size: 0.875rem;
+  color: rgba(99, 102, 241, 0.8);
+  font-weight: 500;
+}
 
 @media (max-width: 768px) {
   .container {

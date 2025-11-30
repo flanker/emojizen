@@ -5,6 +5,7 @@ export interface Translations {
   title: string;
   subtitle: string;
   searchPlaceholder: string;
+  searchingFor: string;
   allCategories: string;
   noEmojisFound: string;
   noEmojisInCategory: string;
@@ -25,6 +26,7 @@ export const translations: Record<Locale, Translations> = {
     title: "Emojizen",
     subtitle: "Discover, search, and copy beautiful emojis with just a click",
     searchPlaceholder: "Search emojis by name or keyword...",
+    searchingFor: "Searching for",
     allCategories: "All Categories",
     noEmojisFound: "No emojis found",
     noEmojisInCategory: "No emojis in this category",
@@ -54,6 +56,7 @@ export const translations: Record<Locale, Translations> = {
     title: "Emojizen",
     subtitle: "发现、搜索并一键复制精美表情符号",
     searchPlaceholder: "按名称或关键词搜索表情符号...",
+    searchingFor: "正在搜索",
     allCategories: "全部分类",
     noEmojisFound: "未找到表情符号",
     noEmojisInCategory: "该分类中没有表情符号",

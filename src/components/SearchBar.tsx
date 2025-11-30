@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { useLocale } from '@/i18n/LocaleContext';
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
@@ -9,6 +10,7 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ onSearch, placeholder = "Search emojis..." }: SearchBarProps) {
+  const { t } = useLocale();
   const [query, setQuery] = useState('');
 
   const handleSearch = useCallback((value: string) => {
@@ -34,7 +36,7 @@ export default function SearchBar({ onSearch, placeholder = "Search emojis..." }
             />
           </svg>
         </div>
-        
+
         <input
           type="text"
           value={query}
@@ -44,7 +46,7 @@ export default function SearchBar({ onSearch, placeholder = "Search emojis..." }
           autoComplete="off"
           spellCheck="false"
         />
-        
+
         {query && (
           <button
             onClick={clearSearch}
@@ -63,10 +65,10 @@ export default function SearchBar({ onSearch, placeholder = "Search emojis..." }
           </button>
         )}
       </div>
-      
+
       {query && (
         <div className={styles.searchIndicator}>
-          <span>Searching for &ldquo;{query}&rdquo;</span>
+          <span>{t.searchingFor} &ldquo;{query}&rdquo;</span>
         </div>
       )}
     </div>
