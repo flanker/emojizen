@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import { useMemo } from 'react';
-import EmojiCard from './EmojiCard';
-import styles from './EmojiGrid.module.css';
+import { useMemo } from "react";
+import EmojiCard from "./EmojiCard";
+import { useLocale } from "@/i18n/LocaleContext";
+import styles from "./EmojiGrid.module.css";
 
 interface Emoji {
   emoji: string;
@@ -24,19 +25,18 @@ interface EmojiGridProps {
 }
 
 export default function EmojiGrid({ categories, activeCategory, searchQuery, onEmojiCopy }: EmojiGridProps) {
+  const { t } = useLocale();
   const filteredEmojis = useMemo(() => {
     let allEmojis: Array<Emoji & { categoryName: string }> = [];
 
     // Get emojis from selected category or all categories
-    const categoriesToShow = activeCategory 
-      ? categories.filter(cat => cat.id === activeCategory)
-      : categories;
+    const categoriesToShow = activeCategory ? categories.filter((cat) => cat.id === activeCategory) : categories;
 
-    categoriesToShow.forEach(category => {
-      category.emojis.forEach(emoji => {
+    categoriesToShow.forEach((category) => {
+      category.emojis.forEach((emoji) => {
         allEmojis.push({
           ...emoji,
-          categoryName: category.name
+          categoryName: category.name,
         });
       });
     });
@@ -44,9 +44,10 @@ export default function EmojiGrid({ categories, activeCategory, searchQuery, onE
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
-      allEmojis = allEmojis.filter(emoji => 
-        emoji.name.toLowerCase().includes(query) ||
-        emoji.keywords.some(keyword => keyword.toLowerCase().includes(query))
+      allEmojis = allEmojis.filter(
+        (emoji) =>
+          emoji.name.toLowerCase().includes(query) ||
+          emoji.keywords.some((keyword) => keyword.toLowerCase().includes(query))
       );
     }
 
@@ -56,13 +57,13 @@ export default function EmojiGrid({ categories, activeCategory, searchQuery, onE
   const groupedEmojis = useMemo(() => {
     if (searchQuery.trim() || activeCategory) {
       // If searching or filtering by category, show flat grid
-      return [{ categoryName: '', emojis: filteredEmojis }];
+      return [{ categoryName: "", emojis: filteredEmojis }];
     }
 
     // Group by category for full display
-    return categories.map(category => ({
+    return categories.map((category) => ({
       categoryName: category.name,
-      emojis: category.emojis.map(emoji => ({ ...emoji, categoryName: category.name }))
+      emojis: category.emojis.map((emoji) => ({ ...emoji, categoryName: category.name })),
     }));
   }, [categories, filteredEmojis, searchQuery, activeCategory]);
 
@@ -70,15 +71,8 @@ export default function EmojiGrid({ categories, activeCategory, searchQuery, onE
     return (
       <div className={styles.emptyState}>
         <div className={styles.emptyIcon}>🔍</div>
-        <h3 className={styles.emptyTitle}>
-          {searchQuery ? 'No emojis found' : 'No emojis in this category'}
-        </h3>
-        <p className={styles.emptyDescription}>
-          {searchQuery 
-            ? `Try searching for something else or check your spelling.`
-            : 'This category appears to be empty.'
-          }
-        </p>
+        <h3 className={styles.emptyTitle}>{searchQuery ? t.noEmojisFound : t.noEmojisInCategory}</h3>
+        <p className={styles.emptyDescription}>{searchQuery ? t.trySearchElse : t.categoryEmpty}</p>
       </div>
     );
   }
@@ -93,27 +87,18 @@ export default function EmojiGrid({ categories, activeCategory, searchQuery, onE
               <div className={styles.categoryLine}></div>
             </div>
           )}
-          
+
           <div className={styles.grid}>
             {group.emojis.map((emoji, index) => (
-              <EmojiCard
-                key={`${emoji.emoji}-${index}`}
-                emoji={emoji}
-                onCopy={onEmojiCopy}
-              />
+              <EmojiCard key={`${emoji.emoji}-${index}`} emoji={emoji} onCopy={onEmojiCopy} />
             ))}
           </div>
         </div>
       ))}
-      
+
       {filteredEmojis.length > 0 && (
         <div className={styles.resultsCount}>
-          <span>
-            {filteredEmojis.length === 1 
-              ? '1 emoji found' 
-              : `${filteredEmojis.length} emojis found`
-            }
-          </span>
+          <span>{filteredEmojis.length === 1 ? `1 ${t.emojiFound}` : `${filteredEmojis.length} ${t.emojisFound}`}</span>
         </div>
       )}
     </div>

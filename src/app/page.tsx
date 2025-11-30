@@ -1,17 +1,20 @@
-'use client';
+"use client";
 
-import { useState, useCallback, useMemo } from 'react';
-import SearchBar from '@/components/SearchBar';
-import CategoryFilter from '@/components/CategoryFilter';
-import EmojiGrid from '@/components/EmojiGrid';
-import CopyNotification from '@/components/CopyNotification';
-import emojiData from '@/data/emojis.json';
+import { useState, useCallback, useMemo } from "react";
+import SearchBar from "@/components/SearchBar";
+import CategoryFilter from "@/components/CategoryFilter";
+import EmojiGrid from "@/components/EmojiGrid";
+import CopyNotification from "@/components/CopyNotification";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLocale } from "@/i18n/LocaleContext";
+import emojiData from "@/data/emojis.json";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useLocale();
+  const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [copiedEmoji, setCopiedEmoji] = useState<string>('');
+  const [copiedEmoji, setCopiedEmoji] = useState<string>("");
   const [showNotification, setShowNotification] = useState(false);
 
   const categories = useMemo(() => emojiData.categories, []);
@@ -26,7 +29,7 @@ export default function Home() {
   const handleCategoryChange = useCallback((categoryId: string | null) => {
     setActiveCategory(categoryId);
     if (categoryId) {
-      setSearchQuery(''); // Clear search when filtering by category
+      setSearchQuery(""); // Clear search when filtering by category
     }
   }, []);
 
@@ -44,22 +47,21 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.header}>
           <div className={styles.headerContent}>
+            <div className={styles.languageSwitcherWrapper}>
+              <LanguageSwitcher />
+            </div>
+
             <div className={styles.hero}>
               <h1 className={styles.title}>
                 <span className={styles.titleEmoji}>🎨</span>
               </h1>
-              <p className={styles.subtitle}>
-                Discover, search, and copy beautiful emojis with just a click
-              </p>
+              <p className={styles.subtitle}>{t.subtitle}</p>
             </div>
-            
+
             <div className={styles.searchSection}>
-              <SearchBar 
-                onSearch={handleSearch}
-                placeholder="Search emojis by name or keyword..."
-              />
+              <SearchBar onSearch={handleSearch} placeholder={t.searchPlaceholder} />
             </div>
-            
+
             <div className={styles.filterSection}>
               <CategoryFilter
                 categories={categories}
@@ -83,21 +85,21 @@ export default function Home() {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <p className={styles.footerText}>
-            Made with <span className={styles.heart}>❤️</span> for emoji lovers everywhere
+            {t.madeWith} <span className={styles.heart}>❤️</span> {t.forEmojiLovers}
           </p>
           <div className={styles.footerStats}>
-            <span>{categories.reduce((total, cat) => total + cat.emojis.length, 0)} emojis</span>
+            <span>
+              {categories.reduce((total, cat) => total + cat.emojis.length, 0)} {t.emojis}
+            </span>
             <span>•</span>
-            <span>{categories.length} categories</span>
+            <span>
+              {categories.length} {t.categories}
+            </span>
           </div>
         </div>
       </footer>
 
-      <CopyNotification
-        emoji={copiedEmoji}
-        show={showNotification}
-        onHide={hideNotification}
-      />
+      <CopyNotification emoji={copiedEmoji} show={showNotification} onHide={hideNotification} />
     </div>
   );
 }

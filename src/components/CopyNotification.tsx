@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import styles from './CopyNotification.module.css';
+import { useEffect, useState } from "react";
+import { useLocale } from "@/i18n/LocaleContext";
+import styles from "./CopyNotification.module.css";
 
 interface CopyNotificationProps {
   emoji: string;
@@ -10,6 +11,7 @@ interface CopyNotificationProps {
 }
 
 export default function CopyNotification({ emoji, show, onHide }: CopyNotificationProps) {
+  const { t } = useLocale();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -31,8 +33,7 @@ export default function CopyNotification({ emoji, show, onHide }: CopyNotificati
       <div className={styles.content}>
         <div className={styles.emoji}>{emoji}</div>
         <div className={styles.message}>
-          <span className={styles.text}>Copied to clipboard!</span>
-          <div className={styles.subtext}>Ready to paste anywhere</div>
+          <span className={styles.text}>{t.copiedToClipboard}</span>
         </div>
         <div className={styles.checkmark}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
