@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import EmojiCard from "./EmojiCard";
 import { useLocale } from "@/i18n/LocaleContext";
-import { translateCategoryName } from "@/i18n/utils";
+import { translateCategoryName, getEmojiName, getEmojiKeywords } from "@/i18n/utils";
 import styles from "./EmojiGrid.module.css";
 
 interface Emoji {
@@ -26,7 +26,7 @@ interface EmojiGridProps {
 }
 
 export default function EmojiGrid({ categories, activeCategory, searchQuery, onEmojiCopy }: EmojiGridProps) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const filteredEmojis = useMemo(() => {
     let allEmojis: Array<Emoji & { categoryName: string }> = [];
 
@@ -45,15 +45,18 @@ export default function EmojiGrid({ categories, activeCategory, searchQuery, onE
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase().trim();
-      allEmojis = allEmojis.filter(
-        (emoji) =>
-          emoji.name.toLowerCase().includes(query) ||
-          emoji.keywords.some((keyword) => keyword.toLowerCase().includes(query))
-      );
+      allEmojis = allEmojis.filter((emoji) => {
+        const displayName = getEmojiName(emoji.emoji, emoji.name, locale);
+        const displayKeywords = getEmojiKeywords(emoji.emoji, emoji.keywords, locale);
+        return (
+          displayName.toLowerCase().includes(query) ||
+          displayKeywords.some((keyword) => keyword.toLowerCase().includes(query))
+        );
+      });
     }
 
     return allEmojis;
-  }, [categories, activeCategory, searchQuery]);
+  }, [categories, activeCategory, searchQuery, locale]);
 
   const groupedEmojis = useMemo(() => {
     if (searchQuery.trim() || activeCategory) {
