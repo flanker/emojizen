@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import EmojiCard from "./EmojiCard";
 import { useLocale } from "@/i18n/LocaleContext";
+import { translateCategoryName } from "@/i18n/utils";
 import styles from "./EmojiGrid.module.css";
 
 interface Emoji {
@@ -83,7 +84,7 @@ export default function EmojiGrid({ categories, activeCategory, searchQuery, onE
         <div key={groupIndex} className={styles.categorySection}>
           {group.categoryName && !searchQuery && !activeCategory && (
             <div className={styles.categoryHeader}>
-              <h2 className={styles.categoryTitle}>{group.categoryName}</h2>
+              <h2 className={styles.categoryTitle}>{translateCategoryName(group.categoryName, t)}</h2>
               <div className={styles.categoryLine}></div>
             </div>
           )}

@@ -17,6 +17,7 @@ export interface Translations {
   emojis: string;
   categories: string;
   copiedToClipboard: string;
+  categoryNames: Record<string, string>;
 }
 
 export const translations: Record<Locale, Translations> = {
@@ -36,6 +37,18 @@ export const translations: Record<Locale, Translations> = {
     emojis: "emojis",
     categories: "categories",
     copiedToClipboard: "Copied to clipboard!",
+    categoryNames: {
+      "Smileys & Emotion": "Smileys & Emotion",
+      "People & Body": "People & Body",
+      Component: "Component",
+      "Animals & Nature": "Animals & Nature",
+      "Food & Drink": "Food & Drink",
+      "Travel & Places": "Travel & Places",
+      Activities: "Activities",
+      Objects: "Objects",
+      Symbols: "Symbols",
+      Flags: "Flags",
+    },
   },
   zh: {
     title: "Emojizen",
@@ -53,5 +66,17 @@ export const translations: Record<Locale, Translations> = {
     emojis: "个表情符号",
     categories: "个分类",
     copiedToClipboard: "已复制到剪贴板！",
+    categoryNames: {
+      "Smileys & Emotion": "笑脸与情感",
+      "People & Body": "人物与身体",
+      Component: "组件",
+      "Animals & Nature": "动物与自然",
+      "Food & Drink": "食物与饮料",
+      "Travel & Places": "旅行与地点",
+      Activities: "活动",
+      Objects: "物品",
+      Symbols: "符号",
+      Flags: "旗帜",
+    },
   },
 };

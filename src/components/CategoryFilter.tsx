@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLocale } from "@/i18n/LocaleContext";
+import { translateCategoryName } from "@/i18n/utils";
 import styles from "./CategoryFilter.module.css";
 
 interface Category {
@@ -21,7 +22,7 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
 
   // 简化的分类名称映射（用于小屏幕显示）
   const getShortName = (name: string): string => {
-    const shortNames: Record<string, string> = {
+    const shortNamesEn: Record<string, string> = {
       "Smileys & Emotion": "Smileys",
       "People & Body": "People",
       "Animals & Nature": "Animals",
@@ -33,7 +34,23 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
       Flags: "Flags",
       Component: "Component",
     };
-    return shortNames[name] || name;
+
+    const shortNamesZh: Record<string, string> = {
+      笑脸与情感: "笑脸",
+      人物与身体: "人物",
+      动物与自然: "动物",
+      食物与饮料: "食物",
+      旅行与地点: "旅行",
+      活动: "活动",
+      物品: "物品",
+      符号: "符号",
+      旗帜: "旗帜",
+      组件: "组件",
+    };
+
+    const translatedName = translateCategoryName(name, t);
+    const shortNames = t.categoryNames["Smileys & Emotion"] === "笑脸与情感" ? shortNamesZh : shortNamesEn;
+    return shortNames[translatedName] || translatedName;
   };
 
   const handleCategoryClick = (categoryId: string | null) => {
@@ -41,9 +58,8 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
     setIsExpanded(false);
   };
 
-  const activeCategoryName = activeCategory
-    ? categories.find((cat) => cat.id === activeCategory)?.name || t.allCategories
-    : t.allCategories;
+  const activeCategory_obj = activeCategory ? categories.find((cat) => cat.id === activeCategory) : null;
+  const activeCategoryName = activeCategory_obj ? translateCategoryName(activeCategory_obj.name, t) : t.allCategories;
 
   return (
     <div className={styles.container}>
@@ -82,7 +98,7 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
                 className={`${styles.dropdownItem} ${activeCategory === category.id ? styles.active : ""}`}
                 onClick={() => handleCategoryClick(category.id)}
               >
-                {category.name}
+                {translateCategoryName(category.name, t)}
               </button>
             ))}
           </div>
@@ -103,10 +119,10 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
               key={category.id}
               className={`${styles.tab} ${activeCategory === category.id ? styles.active : ""}`}
               onClick={() => handleCategoryClick(category.id)}
-              title={category.name} /* 完整名称作为tooltip */
+              title={translateCategoryName(category.name, t)} /* 完整名称作为tooltip */
             >
               <span className={styles.tabShort}>{getShortName(category.name)}</span>
-              <span className={styles.tabFull}>{category.name}</span>
+              <span className={styles.tabFull}>{translateCategoryName(category.name, t)}</span>
             </button>
           ))}
         </div>
