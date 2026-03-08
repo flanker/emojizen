@@ -18,6 +18,8 @@ export interface Translations {
   emojis: string;
   categories: string;
   copiedToClipboard: string;
+  feedback: string;
+  friendlyLinks: string;
   categoryNames: Record<string, string>;
 }
 
@@ -39,6 +41,8 @@ export const translations: Record<Locale, Translations> = {
     emojis: "emojis",
     categories: "categories",
     copiedToClipboard: "Copied to clipboard!",
+    feedback: "Feedback",
+    friendlyLinks: "Links",
     categoryNames: {
       "Smileys & Emotion": "Smileys & Emotion",
       "People & Body": "People & Body",
@@ -69,6 +73,8 @@ export const translations: Record<Locale, Translations> = {
     emojis: "个表情符号",
     categories: "个分类",
     copiedToClipboard: "已复制到剪贴板！",
+    feedback: "意见反馈",
+    friendlyLinks: "友情链接",
     categoryNames: {
       "Smileys & Emotion": "笑脸与情感",
       "People & Body": "人物与身体",

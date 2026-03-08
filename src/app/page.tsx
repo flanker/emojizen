@@ -48,6 +48,14 @@ export default function Home() {
         <div className={styles.header}>
           <div className={styles.headerContent}>
             <div className={styles.languageSwitcherWrapper}>
+              <a
+                href="https://formhug.ai/f/Yj2an6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.feedbackLink}
+              >
+                📝 {t.feedback}
+              </a>
               <LanguageSwitcher />
             </div>
 
@@ -95,6 +103,16 @@ export default function Home() {
             <span>
               {categories.length} {t.categories}
             </span>
+          </div>
+          <div className={styles.footerLinks}>
+            <span className={styles.footerLinksLabel}>{t.friendlyLinks}:</span>
+            <a
+              href="https://formhug.ai/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              FormHug
+            </a>
           </div>
         </div>
       </footer>

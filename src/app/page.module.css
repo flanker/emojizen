@@ -31,7 +31,25 @@
 .languageSwitcherWrapper {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 16px;
+}
+
+.feedbackLink {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.feedbackLink:hover {
+  color: var(--foreground);
+  border-color: var(--foreground);
 }
 
 .hero {
@@ -122,6 +140,30 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.footerLinks {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footerLinksLabel {
+  color: var(--muted);
+}
+
+.footerLinks a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footerLinks a:hover {
+  color: var(--foreground);
+  text-decoration: underline;
 }
 
 /* Responsive Design */
