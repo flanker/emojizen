@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useSyncExternalStore, ReactNode } from "react";
 import { Locale, translations, Translations } from "./locales";
 
 interface LocaleContextType {
@@ -12,31 +12,27 @@ interface LocaleContextType {
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 function getBrowserLocale(): Locale {
-  if (typeof window === "undefined") return "en";
-
   const browserLang = navigator.language.toLowerCase();
   if (browserLang.startsWith("zh")) return "zh";
   return "en";
 }
 
 function getSavedLocale(): Locale | null {
-  if (typeof window === "undefined") return null;
-
   const saved = localStorage.getItem("locale");
   if (saved === "en" || saved === "zh") return saved;
   return null;
 }
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
-  const [mounted, setMounted] = useState(false);
+function getInitialLocale(): Locale {
+  return getSavedLocale() || getBrowserLocale();
+}
 
-  useEffect(() => {
-    const savedLocale = getSavedLocale();
-    const initialLocale = savedLocale || getBrowserLocale();
-    setLocaleState(initialLocale);
-    setMounted(true);
-  }, []);
+const subscribe = () => () => {};
+
+export function LocaleProvider({ children }: { children: ReactNode }) {
+  const initialLocale = useSyncExternalStore(subscribe, getInitialLocale, () => "en" as Locale);
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
